@@ -445,7 +445,11 @@ func QueryAllocatedBlocks(diskHandle VixDiskLibHandle, startSector VixDiskLibSec
 		return nil, NewVddkError(uint64(res), fmt.Sprintf("QueryAllocatedBlocks(%d, %d, %d) error: %d.", startSector, numSectors, chunkSize, res))
 	}
 
+
 	retList := make([]VixDiskLibBlock, bld.numBlocks)
+	if bld.numBlocks==0 {
+	    return retList,nil
+	}
 	C.BlockListCopyAndFree(&bld, (*C.VixDiskLibBlock)(unsafe.Pointer(&retList[0])))
 
 	return retList, nil
