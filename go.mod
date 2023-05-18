@@ -1,4 +1,4 @@
-module github.com/vmware/virtual-disks
+module github.com/haobaojiang/virtual-disks
 
 go 1.18
 
